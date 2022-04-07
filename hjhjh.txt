@@ -1,0 +1,74 @@
+
+https://github.com/guoguo12/billboard-charts
+
+def calc(phrase: str):
+    phrase=phrase.split(" ")
+    res=[]
+    for i in phrase:
+        if i.isdigit():
+            res.append(int(i))
+        elif i=="+":
+            r=res[len(res)-1]+res[len(res)-2]
+            res.pop()
+            res.pop()
+            res.append(r)
+        elif i=="*":
+            r=res[len(res)-1]*res[len(res)-2]
+            res.pop()
+            res.pop()
+            res.append(r)
+        elif i=="-":
+             r=res[len(res)-2]-res[len(res)-1]
+            res.pop()
+            res.pop()
+            res.append(r)
+    return res
+print(calc("1 2 + 4 * 3 +"))
+
+
+
+
+def check_delimeter(sr :str):
+  
+    res=[]
+    for i in sr:
+        if i=="(" or i=="{" or i=="[":
+            res.append(i)
+        elif i==")":
+            if "(" in res:
+                res.remove("(")
+            else:
+                return False
+        elif i=="}":
+            if "{" in res:
+                res.remove("{")
+            else:
+                return False   
+        elif i=="]":
+            if "[" in res:
+                res.remove("[")
+            else:
+                return False
+    if res==[]: return True
+    else: return False
+print(check_delimeter("( ){ [ ] ( ) { } }"))
+
+
+
+
+
+data="""Край любимый! Сердцу снятся
+Скирды солнца в водах лонных,
+Я хотел бы затеряться
+В зеленях твоих стозвонных."""
+
+data=data.split("\n")
+count=1
+for i in data:
+    data[data.index(i)]= str(count)+" "+ i+"\n"
+    count+=1
+data="".join(data)
+print(data)
+
+
+
